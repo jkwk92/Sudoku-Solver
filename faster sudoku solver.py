@@ -12,7 +12,6 @@ board = [
     [3,0,0,5,0,0,4,0,0]
 ]
 
-
 #find empty fill on the board
 def find_empty(board):
     # row position
@@ -24,29 +23,24 @@ def find_empty(board):
     return None
 
 # find valid guess
-
 def valid_guess(board, row, col):
-    guess = list(range(1,10))
+    val_guess = list(range(1,10))
     board_num = []
     row_num = board[row]
-    #print(row_num)
     col_num = []
     for y in range(len(board)):
         col_num.append(board[y][col])
-    #print(col_num)
     # check 3x3
     row_start = (row // 3) * 3 # 2//3=0 4//3=1 7//3=2
     col_start = (col // 3) * 3
-
     cube_num = []
     for r in range(row_start, row_start + 3):
         for c in range(col_start, col_start + 3):
             cube_num.append(board[r][c])
-    #print(cube_num)
     #A set is an unordered collection of items. Every set element is unique (no duplicates)
     board_num = list(set(row_num + col_num + cube_num)) # convert set back to list
     board_num.pop(0) # remove 1st int which happens to be 0 , sudoku only has 1 - 9
-    guess = list(set(guess) - set(board_num))
+    val_guess = list(set(val_guess) - set(board_num))
     return guess
 
 def solve_sudoku(board):
@@ -55,14 +49,12 @@ def solve_sudoku(board):
         return True
     else:
         row, col = find 
-    for guess in (valid_guess(board, row, col)):
-        board[row][col] = guess
+    for i in (valid_guess(board, row, col)):
+        board[row][col] = i
         if solve_sudoku(board):
             return True
         board[row][col] = 0 
     return False
-
-    
 
 def print_board(bo):
     for r in range(len(bo)):
@@ -77,11 +69,10 @@ def print_board(bo):
                 print(str(bo[r][c]) + " ", end="")
 
 
-
 tic = time.perf_counter()
-#print_board(board)
+print_board(board)
 solve_sudoku(board)
-#print("______________________________________")
-#print_board(board)
+print("______________________________________")
+print_board(board)
 toc = time.perf_counter()
 print(f"jon {toc - tic:0.4f} seconds")
