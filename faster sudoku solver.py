@@ -41,7 +41,7 @@ def valid_guess(board, row, col):
     board_num = list(set(row_num + col_num + cube_num)) # convert set back to list
     board_num.pop(0) # remove 1st int which happens to be 0 , sudoku only has 1 - 9
     val_guess = list(set(val_guess) - set(board_num))
-    return guess
+    return val_guess
 
 def solve_sudoku(board):
     find = find_empty(board)
