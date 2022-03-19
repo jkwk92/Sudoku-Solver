@@ -81,10 +81,11 @@ def print_board(bo):
                 print(str(bo[r][c]) + " ", end="")
 
 
-tic = time.perf_counter()
+
 print_board(board)
+tic = time.perf_counter()
 solve_sudoku(board)
+toc = time.perf_counter()
 print("______________________________________")
 print_board(board)
-toc = time.perf_counter()
 print(f"jon {toc - tic:0.4f} seconds")
